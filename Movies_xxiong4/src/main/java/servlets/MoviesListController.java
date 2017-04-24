@@ -25,17 +25,17 @@ public class MoviesListController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String target = null;
+		String target = "/view-all.jsp";
 		
 		try {
 			
 			final String filePath = getServletContext().getRealPath(WorkbookUtility.INPUT_FILE);
 			final File inputFile = new File(filePath);
-			final List<Movie> movie = WorkbookUtility.retrieveMoviesFromWorkbook(inputFile);
+			final List<Movie> moviesList = WorkbookUtility.retrieveMoviesFromWorkbook(inputFile);
 			
-			request.setAttribute("movie", movie);
+			request.setAttribute("moviesList", moviesList);
 			
-			target = "movies-list.jsp";
+			target = "/view-all.jsp";
 			
 			
 		} catch (Exception e) {
@@ -43,7 +43,7 @@ public class MoviesListController extends HttpServlet {
 			
 			
 			request.setAttribute("message", "There is a mistake here.");
-			target = "index.jsp";
+			target = "/error.jsp";
 			
 		}
 		

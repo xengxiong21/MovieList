@@ -14,7 +14,6 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
-
 import xxiong.cvtc.web.Movie;
 
 /**
@@ -27,27 +26,28 @@ public static final String INPUT_FILE = "/assets/moviesList.xlsx";
 	
 	public static List<Movie> retrieveMoviesFromWorkbook(final File inputFile) throws InvalidFormatException, IOException {
 		
-		final List<Movie> movies = new ArrayList<>();
+		final List<Movie> moviesList = new ArrayList<>();
 		
 		final Workbook workbook = WorkbookFactory.create(inputFile);
 		
 		final Sheet sheet = workbook.getSheetAt(0);
 
 		for (final Row row : sheet) {
-			final Cell moviteTitleCell = row.getCell(0);
+			final Cell movieTitleCell = row.getCell(0);
 			final Cell directorNameCell = row.getCell(1);
-			final Cell lenthInMinutesCell = row.getCell(2);
+			final Cell lengthInMinutesCell = row.getCell(2);
 			
-			final Movie movie = new Movie(
-									moviteTitleCell.getStringCellValue().trim(),
-									directorNameCell.getStringCellValue().trim(), 
-									(int) lenthInMinutesCell.getNumericCellValue());
+			final Movie movies = new Movie();
+			movies.setDirector(directorNameCell.getStringCellValue().trim());
+			movies.setTitle(movieTitleCell.getStringCellValue().trim());
+			movies.setLengthInMinutes(( int) lengthInMinutesCell.getNumericCellValue());
 			
-			movies.add(movie);
+			
+			moviesList.add(movies);
 			
 		}
 		
-		return movies;
+		return moviesList;
 		
 	}
 
