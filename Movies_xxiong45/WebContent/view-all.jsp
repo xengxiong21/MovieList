@@ -13,7 +13,7 @@
 			</div>
 <%@ include file="includes/navigation.jsp" %>
 			<div class="container">
-				<c:forEach var="movies" items="${moviesList}">
+				<c:forEach var="movies" items="${movie}">
 					<div class="span4">
 						<h2>${movies.title}</h2>
 						<p>${movies.director} was the director and it was ${movies.lengthInMinutes} minutes long.</p>

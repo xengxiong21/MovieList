@@ -2,22 +2,18 @@
 <!doctype html>
 <html>
 	<head>
-		<title>Search</title>
-		<meta name="description" content="This is a search Page">
+		<title>Success Page</title>
+		<meta name="description" content="This is a JSP page for successfull things.">
 <%@ include file="includes/styles.jsp" %>		
 	</head>
 	<body>
 		<div class="container">
 			<div class="hero-unit">
-				<h1>Search</h1>
+				<h1>Success Page</h1>
 			</div>
 <%@ include file="includes/navigation.jsp" %>
 			<div class="container">
-				<form action="Search" method="post">
-					<label for="title"><strong>Search by title:</strong></label>
-					<input name="title">
-					<input type="submit" value="Search!">
-				</form>
+				<p>${message}</p>
 			</div>
 <%@ include file="includes/footer.jsp" %>
 		</div>

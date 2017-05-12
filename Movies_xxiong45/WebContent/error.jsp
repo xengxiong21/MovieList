@@ -16,7 +16,7 @@
 				<p>Houston, we've had a problem.</p>
 				<c:choose>
 					<c:when test="${message != null}">
-						<p>%{message}</p>
+						<p>${message}</p>
 					</c:when>
 					<c:otherwise>
 						<p>To continue, click the back button</p>

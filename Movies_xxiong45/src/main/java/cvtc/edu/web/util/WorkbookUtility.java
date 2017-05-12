@@ -27,7 +27,7 @@ public static final String INPUT_FILE = "/assets/moviesList.xlsx";
 	
 	public static List<Movie> retrieveMoviesFromWorkbook(final File inputFile) throws InvalidFormatException, IOException {
 		
-		final List<Movie> moviesList = new ArrayList<>();
+		final List<Movie> movies = new ArrayList<>();
 		
 		final Workbook workbook = WorkbookFactory.create(inputFile);
 		
@@ -38,17 +38,17 @@ public static final String INPUT_FILE = "/assets/moviesList.xlsx";
 			final Cell directorNameCell = row.getCell(1);
 			final Cell lengthInMinutesCell = row.getCell(2);
 			
-			final Movie movies = new Movie();
-			movies.setDirector(directorNameCell.getStringCellValue().trim());
-			movies.setTitle(movieTitleCell.getStringCellValue().trim());
-			movies.setLengthInMinutes(( int) lengthInMinutesCell.getNumericCellValue());
+			final Movie movie = new Movie();
+			movie.setDirector(directorNameCell.getStringCellValue().trim());
+			movie.setTitle(movieTitleCell.getStringCellValue().trim());
+			movie.setLengthInMinutes(( int) lengthInMinutesCell.getNumericCellValue());
 			
 			
-			moviesList.add(movies);
+			movies.add(movie);
 			
 		}
 		
-		return moviesList;
+		return movies;
 		
 	}
 

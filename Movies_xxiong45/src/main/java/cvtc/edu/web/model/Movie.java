@@ -22,6 +22,13 @@ public class Movie implements Serializable{
 		
 	}
 	
+	public Movie(String title, String director, int lengthInMinutes) {
+		this.title = title;
+		this.director = director;
+		this.lengthInMinutes = lengthInMinutes;
+		
+	}
+	
 	public String getTitle() {
 		return title;
 	}

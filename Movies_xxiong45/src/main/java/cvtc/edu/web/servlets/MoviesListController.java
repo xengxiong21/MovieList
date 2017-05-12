@@ -1,7 +1,7 @@
 package cvtc.edu.web.servlets;
 
-import java.io.File;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -10,13 +10,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import cvtc.edu.web.dao.MovieDao;
+import cvtc.edu.web.dao.impl.MovieDaoImpl;
 import cvtc.edu.web.model.Movie;
-import cvtc.edu.web.util.WorkbookUtility;
 
 /**
  * Servlet implementation class MoviesListController
  */
-@WebServlet("/MoviesList")
+@WebServlet("/ViewAll")
 public class MoviesListController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -25,29 +26,51 @@ public class MoviesListController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String target = "/view-all.jsp";
+		String target = null;
 		
 		try {
 			
-			final String filePath = getServletContext().getRealPath(WorkbookUtility.INPUT_FILE);
-			final File inputFile = new File(filePath);
-			final List<Movie> moviesList = WorkbookUtility.retrieveMoviesFromWorkbook(inputFile);
+			final MovieDao movieDao = new MovieDaoImpl();
+			final List<Movie> movie = movieDao.retrieveMovie();
 			
-			request.setAttribute("moviesList", moviesList);
+			final String sortType = request.getParameter("sortType");
 			
-			target = "/view-all.jsp";
+			if (null != sortType) {
+				sort(movie, sortType);
+			}
+			
+			request.setAttribute("movie", movie);
+			
+			target = "view-all.jsp";
 			
 			
 		} catch (Exception e) {
 			e.printStackTrace();
+			request.setAttribute("message", e.getMessage());
 			
-			
-			request.setAttribute("message", "There is a mistake here.");
-			target = "/error.jsp";
+			target = "error.jsp";
 			
 		}
 		
-		getServletContext().getRequestDispatcher(target).forward(request, response);
+		request.getRequestDispatcher(target).forward(request, response);
+		
+	}
+	
+	private void sort(final List<Movie> movie, final String sortType) {
+		
+		switch (sortType) {
+		case "title":
+			Collections.sort(movie, (m1, m2) -> m1.getTitle().compareTo(m2.getTitle()));
+			break;
+		case "director":
+			Collections.sort(movie, (m1, m2) -> m1.getDirector().compareTo(m2.getDirector()));
+			break;
+		case "lengthInMinutes":
+			//Collections.sort(movie, (m1, m2) -> m1.getLengthInMinutes().compareTo(m2.getLengthInMinutes()));
+			break;
+		default:
+			break;
+		}
 		
 	}
 
