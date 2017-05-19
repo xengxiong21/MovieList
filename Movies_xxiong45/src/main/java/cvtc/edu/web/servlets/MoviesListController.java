@@ -66,7 +66,7 @@ public class MoviesListController extends HttpServlet {
 			Collections.sort(movie, (m1, m2) -> m1.getDirector().compareTo(m2.getDirector()));
 			break;
 		case "lengthInMinutes":
-			//Collections.sort(movie, (m1, m2) -> m1.getLengthInMinutes().compareTo(m2.getLengthInMinutes()));
+			Collections.sort(movie, (m1, m2) -> Integer.compare(m1.getLengthInMinutes(), m2.getLengthInMinutes()));
 			break;
 		default:
 			break;

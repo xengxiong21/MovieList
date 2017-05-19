@@ -14,7 +14,7 @@
 			<div class="container">
 				<form action="AddMovie" method="post">
 				
-					<label for="title"><strong>Title: </strong></label>
+					<label for="title"><strong>Title:</strong></label>
 					<input name="title"><br>
 					
 					<label for="director"><strong>Director: </strong></label>

@@ -15,6 +15,7 @@
 			<div class="container">
 				<form action="PopulateDatabase" method="post">
 					<p>Click on the populate button to populate the Movie database.</p>
+					<p>This will reset the current database if there is one and will add my favorite movies.</p>
 					<input type="submit" value="Populate!">
 				</form>
 			</div>

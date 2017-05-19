@@ -1,1 +1,1 @@
-<div class="hero-unit">&copy; Copyright 2017 Xeng Xiong</div>
+<div class="hero-unit">&copy;Copyright 2017 <a href="mailto:xengxiong21@gmail.com">Xeng Xiong</a></div>
